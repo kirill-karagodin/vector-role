@@ -8,5 +8,5 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_gid }}"
     validate: vector validate --no-environment --config-toml %s
-    become: true
+  become: true
   notify: Start Vector service
