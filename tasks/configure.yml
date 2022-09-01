@@ -1,0 +1,12 @@
+---
+# Configure Vector servise
+- name: Deploy config Vector
+  ansible.builtin.template:
+    src: vector.j2
+    dest: /etc/vector/vector.toml
+    mode: 0644
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+    validate: vector validate --no-environment --config-toml %s
+    become: true
+  notify: Start Vector service
