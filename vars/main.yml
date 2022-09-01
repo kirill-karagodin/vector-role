@@ -1,6 +1,5 @@
 ---
 # vars file for vector-role
-vector_home: "/opt/vector/{{ version }}"
 vector_config_path: /etc/vector/vector.yaml
 vector_config:
   sources:
