@@ -1,1 +1,25 @@
-{{ vector_config | to_nice_yaml }}
+[sources.dummy_logs]
+type = "demo_logs"
+format = "syslog"
+interval = 1
+
+[transforms.parse_logs]
+type = "remap"
+inputs = ["dummy_logs"]
+source = '''
+. = parse_syslog!(string!(.message))
+'''
+
+[sinks.print]
+type = "console"
+inputs = ["parse_logs"]
+encoding.codec = "json"
+
+[sinks.my_sink_id]
+type = "clickhouse"
+inputs = "local_logs"
+database = "logs"
+endpoint = "http://{{ hostvars['clickhouse-01'].ansible_host }}:8123"
+table = "vector_internal_logs"
+compression = "gzip"
+
