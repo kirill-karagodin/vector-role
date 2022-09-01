@@ -1,5 +1,5 @@
 ---
-# Install Vector
+# Install Vector Service
 - name: Install Vector packages
   become: true
   ansible.builtin.yum:
