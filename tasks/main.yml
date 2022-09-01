@@ -1,10 +1,10 @@
 ---
 # tasks file for vector-role
 - name: Get Vector distrib
-  import_tesks: download/{{ ansible_pkg_mgr }}.yml
+  import_tasks: download/{{ ansible_pkg_mgr }}.yml
 
 - name: Install Vector packages
-  import_tesks: install/{{ ansible_pkg_mgr }}.yml
+  import_tasks: install/{{ ansible_pkg_mgr }}.yml
 
 - name: Deploy config Vector
-  import_tesks: configure.yml
+  import_tasks: configure.yml
