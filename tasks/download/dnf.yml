@@ -1,6 +1,6 @@
 ---
 # Dounload vector files
-- name: Get Vector distrib
+- name: Get Vector distrib (dnf)
   ansible.builtin.get_url:
     url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-1.{{ ansible_architecture }}.rpm"
     dest: "./vector-{{ vector_version }}-1.{{ ansible_architecture }}.rpm"
