@@ -11,7 +11,7 @@
     - ansible_pkg_mgr == 'dnf'
 
 - name: Install Vector packages
-  import_tasks: install/yam.yml
+  import_tasks: install/yum.yml
   when:
     - ansible_pkg_mgr == 'yum'
 
