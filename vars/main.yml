@@ -1,5 +1,3 @@
 ---
 # vars file for vector-role
 vector_home: "/opt/vector/{{ version }}"
-clickhouse_user: netology
-clickhouse_password: netology

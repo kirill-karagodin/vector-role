@@ -17,9 +17,8 @@ encoding.codec = "json"
 
 [sinks.my_sink_id]
 type = "clickhouse"
-inputs = "local_logs"
+inputs = [ "parse_logs" ]
 database = "logs"
-endpoint = "http://{{ hostvars['clickhouse-01'].ansible_host }}:8123"
-table = "vector_internal_logs"
+endpoint = "http://localhost:8123"
+table = "logstable"
 compression = "gzip"
-
