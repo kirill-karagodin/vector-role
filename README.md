@@ -36,7 +36,6 @@ Example Playbook
   roles:
     - vector_role
 ````
-
 License
 -------
 
