@@ -1,38 +1,44 @@
-Role Name Vector
+Role Vector
 =========
 
-A brief description of the role goes here.
 
 Requirements
 ------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Для установки роли отредактируйте 'requirements.yml'
+ 
+````bash
+  - name: vector_role
+    src: git@github.com:kirill-karagodin/vector-role.git
+    scm: git
+    version: "[last version]"
+````
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+**defaults/main.yaml** - изменяемые переменные (номер версии Vector)
 
-Dependencies
-------------
+**vars/main.yml** - директория установки ПО (по умолчанию /opt/vector\[номер версии]), при желании можно изменить
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+**tasks/download** - таски для получения дистрибутива (реализованно для CentOS7/8)
+
+**tasks/install** - таски установки дистрибутива (реализованно для CentOS7/8) 
+
+**tasks/configure.yml** - установка конфигурационного файла Vector
+
+**tasks/main.yml** - сценарий установки Vector
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+````bash
+- name: Install Vector
+  hosts: vector
+  roles:
+    - vector_role
+````
 
 License
 -------
 
-BSD
+MIT
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
