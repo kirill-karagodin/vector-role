@@ -3,10 +3,18 @@
 - name: Deploy config Vector
   ansible.builtin.template:
     src: vector.j2
-    dest: /etc/vector/vector.toml
+    dest: /etc/vector/vector.yaml
     mode: 0644
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_gid }}"
     validate: vector validate --no-environment --config-yaml %s
   become: true
   notify: Start Vector service
+- name: Create systemd unit Vector
+  become: true
+  template:
+    src: vector.service.j2
+    dest: /etc/systemd/system/vector.service
+    mode: 0644
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
