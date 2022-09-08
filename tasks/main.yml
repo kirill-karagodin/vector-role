@@ -10,15 +10,25 @@
   when:
     - ansible_pkg_mgr == 'dnf'
 
-- name: Install Vector packages
+- name: Get  Vector distrib (deb)
+  import_tasks: download/deb.yml
+  when:
+    - ansible_pkg_mgr == 'deb'
+
+- name: Install Vector packages (yum)
   import_tasks: install/yum.yml
   when:
     - ansible_pkg_mgr == 'yum'
 
-- name: Install Vector packages
+- name: Install Vector packages (dnf)
   import_tasks: install/dnf.yml
   when:
     - ansible_pkg_mgr == 'dnf'
+
+- name: Install Vector packages (deb)
+  import_tasks: install/dnf.yml
+  when:
+    - ansible_pkg_mgr == 'deb'
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
