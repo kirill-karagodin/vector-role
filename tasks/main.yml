@@ -13,7 +13,7 @@
 - name: Get  Vector distrib (deb)
   import_tasks: download/deb.yml
   when:
-    - ansible_pkg_mgr == 'deb'
+    - ansible_pkg_mgr == 'apt'
 
 - name: Install Vector packages (yum)
   import_tasks: install/yum.yml
@@ -26,9 +26,19 @@
     - ansible_pkg_mgr == 'dnf'
 
 - name: Install Vector packages (deb)
-  import_tasks: install/dnf.yml
+  import_tasks: install/deb.yml
   when:
-    - ansible_pkg_mgr == 'deb'
+    - ansible_pkg_mgr == 'apt'
+
+- name: Creates directory
+  become: true
+  file:
+    path: /var/lib/vector/local_logs
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+    mode: 0644
+  notify: Start Vector service
 
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
